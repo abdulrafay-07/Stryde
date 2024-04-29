@@ -6,7 +6,9 @@ const Home = () => {
     const isAuthenticated = useSelector(state => state.auth.status);
 
     return isAuthenticated ? (
-        <div>Home</div>
+        <div className='font-primary h-screen'>
+            Home
+        </div>
     ) : (
         <div>
             <Login />

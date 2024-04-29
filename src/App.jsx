@@ -28,8 +28,16 @@ const App = () => {
 
   return !loading? (
     <div className={`${theme}`}>
-      <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 h-screen font-primary'>
-        <Menu />
+      <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300'>
+        {
+          status ? (
+            <div>
+              <Menu />
+            </div>
+          ) : null
+        }
+      </div>
+      <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 duration-300'>
         <Theme />
         <Outlet />
       </div>

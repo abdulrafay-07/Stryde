@@ -3,5 +3,8 @@ import Signup from './auth/Signup';
 import AuthLayout from './auth/AuthLayout';
 import Menu from './menu/Menu';
 import Theme from './theme/Theme';
+import Categories from './categories/Categories';
+import Input from './common/Input';
+import Button from './common/Button';
 
-export { Login, Signup, AuthLayout, Menu, Theme };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, };
