@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Categories = () => {
+const Categories = ({ menuOpen, setMenuOpen, handleMenuOpen }) => {
     return (
         <div className='flex flex-col gap-2'>
-            
+            {/* categories */}
         </div>
     )
 }

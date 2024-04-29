@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { login, logout } from './store/authSlice';
-import { toggleTheme } from './store/themeSlice';
 import appwriteService from './appwrite/config';
 import { useDispatch, useSelector } from 'react-redux';
-import { Menu, Theme } from './components/index';
+import { Logo, Menu, Theme } from './components/index';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {
@@ -33,8 +32,15 @@ const App = () => {
           status ? (
             <div>
               <Menu />
+              <div className='fixed bottom-0 right-0 m-4'>
+                <Logo />
+              </div>
             </div>
-          ) : null
+          ) : (
+            <div className='fixed top-0 left-0 m-4'>
+              <Logo />
+            </div>
+          )
         }
       </div>
       <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 duration-300'>
