@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'logo': ['Jersey15', 'sans-serif'],
+        'logo': ['Neucha', 'sans-serif'],
         'primary': ['Mulish', 'sans-serif'],
       },
     },

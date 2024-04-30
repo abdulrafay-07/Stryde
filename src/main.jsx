@@ -6,7 +6,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 
-import { Home, Login, Signup } from './pages/index.js'
+import { Home, Login, Signup, Browse, Search } from './pages/index.js'
 import { AuthLayout } from './components/index.js'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -34,6 +34,24 @@ const router = createBrowserRouter([
         element: (
           <AuthLayout authentication={false}>
             <Signup />
+          </AuthLayout>
+        )
+      },
+      {
+        path: '/browse',
+        element: (
+          <AuthLayout authentication>
+            {' '}
+            <Browse />
+          </AuthLayout>
+        )
+      },
+      {
+        path: '/search',
+        element: (
+          <AuthLayout authentication>
+            {' '}
+            <Search />
           </AuthLayout>
         )
       }

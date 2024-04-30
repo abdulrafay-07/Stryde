@@ -34,7 +34,7 @@ const Menu = () => {
                     onClick={handleMenuOpen}
                 />
             </div>
-            <Categories menuOpen={menuOpen} setMenuOpen={setMenuOpen} handleMenuOpen={handleMenuOpen} />
+            <Categories menuOpen={menuOpen} />
             <div className='fixed bottom-0 left-0 m-4 lg:m-5 cursor-pointer text-2xl lg:text-3xl'>
                 {
                     isAuthenticated && (

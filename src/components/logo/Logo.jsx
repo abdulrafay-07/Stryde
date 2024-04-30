@@ -1,9 +1,9 @@
 import React from 'react';
 import Stryde from '../../assets/images/Stryde.png';
 
-const Logo = () => {
+const Logo = ({ className = 'w-8' }) => {
     return (
-        <div className='w-12'>
+        <div className={`${className}`}>
             <img src={Stryde} alt='Stryde' />
         </div>
     )
