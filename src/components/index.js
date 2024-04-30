@@ -6,6 +6,8 @@ import Theme from './theme/Theme';
 import Categories from './categories/Categories';
 import Input from './common/Input';
 import Button from './common/Button';
-import Logo from './logo/Logo';
+import Logo from './common/Logo';
+import Banner from './banner/Banner';
+import Cards from './cards/Cards';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, Cards, };

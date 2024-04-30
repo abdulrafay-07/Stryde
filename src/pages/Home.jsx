@@ -1,5 +1,6 @@
 import React from 'react';
 import { Login } from './index';
+import { Banner, Cards } from '../components/index';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
@@ -7,7 +8,10 @@ const Home = () => {
 
     return isAuthenticated ? (
         <div className='font-primary h-screen'>
-            Home
+            <div className='flex flex-col gap-10'>
+                <Banner />
+                <Cards />
+            </div>
         </div>
     ) : (
         <div>

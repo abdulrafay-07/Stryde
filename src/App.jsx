@@ -3,7 +3,7 @@ import { login, logout } from './store/authSlice';
 import appwriteService from './appwrite/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { Logo, Menu, Theme } from './components/index';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -32,9 +32,9 @@ const App = () => {
           status ? (
             <div>
               <Menu />
-              <div className='fixed bottom-0 right-0 m-4'>
+              <Link to='/' className='fixed bottom-0 right-0 m-4'>
                 <Logo />
-              </div>
+              </Link>
             </div>
           ) : (
             <div className='fixed top-0 left-0 m-4'>

@@ -30,14 +30,12 @@ const Categories = ({ menuOpen }) => {
                 categories.map((category, index) => (
                         <div key={index} className={`text-xl 2xl:text-2xl ${menuOpen ? 'flex gap-x-3 items-center' : ''}`}>
                             <Link to={category.to}>
-                                <category.icon className='h-[26px]' />
+                                <category.icon />
                             </Link>
                             {menuOpen && showText && (
-                                <div className='h-[26px]'>
-                                    <Link to={category.to} className='text-sm md:text-base xl:text-xl'>
+                                <Link to={category.to} className='text-sm md:text-base xl:text-xl'>
                                     {category.name}
                                 </Link>
-                                </div>
                             )}
                         </div>
                 ))
