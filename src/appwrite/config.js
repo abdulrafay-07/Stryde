@@ -1,16 +1,20 @@
 import conf from '../conf/conf';
-import { Client, Account, Databases, ID } from 'appwrite';
+import { Client, Account, Databases, ID, Query } from 'appwrite';
 
 export class AppwriteService {
     client = new Client();
     account;
+    databases;
 
     constructor() {
         this.client
             .setEndpoint(conf.appwriteURL)
             .setProject(conf.appwriteProjectID);
         this.account = new Account(this.client);
+        this.databases = new Databases(this.client);
     }
+
+    // authentication methods
 
     async createAccount({email, password, name}) {
         try {
@@ -46,6 +50,53 @@ export class AppwriteService {
             return await this.account.get();
         } catch (error) {
             console.log('Appwrite service :: getCurrentUser :: error', error);
+        }
+    }
+
+    // databases methods
+
+    async createUserPreference({workoutDaysPerWeek, userId}) {
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteUserPrefCollectionID,
+                ID.unique(),
+                {
+                    workoutDaysPerWeek,
+                    userId
+                }
+            )
+        } catch (error) {
+            console.log('Appwrite service :: createUserPreference :: error', error);
+        }
+    }
+
+    async updateUserPreference(documentId, {workoutDaysPerWeek}) {
+        try {
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteUserPrefCollectionID,
+                documentId,
+                {
+                    workoutDaysPerWeek
+                }
+            )
+        } catch (error) {
+            console.log('Appwrite service :: updateUserPreference :: error', error);
+        }
+    }
+
+    async getUserPreference(userId) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseID,
+                conf.appwriteUserPrefCollectionID,
+                [
+                    Query.equal('userId', userId)
+                ]
+            )
+        } catch (error) {
+            console.log('Appwrite service :: getUserPreference :: error', error);
         }
     }
 }
