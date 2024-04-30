@@ -35,10 +35,10 @@ const Menu = () => {
                 />
             </div>
             <Categories menuOpen={menuOpen} />
-            <div className='fixed bottom-0 left-0 m-4 lg:m-5 cursor-pointer text-2xl lg:text-3xl'>
+            <div className='fixed bottom-0 left-0 m-4 lg:m-6 cursor-pointer text-2xl'>
                 {
                     isAuthenticated && (
-                        <IoIosLogOut onClick={logoutHandler} />
+                        <IoIosLogOut className='text-purple-500 hover:text-purple-700 ease-in duration-150' onClick={logoutHandler} />
                     )
                 }
             </div>

@@ -36,7 +36,7 @@ const Login = () => {
     return (
         <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 h-screen flex items-center md:px-48 2xl:px-0 2xl:max-w[1440px] max-w-7xl mx-auto font-primary duration-300'>
             <div className='flex flex-col lg:flex-row lg:justify-between dark:bg-neutral-800 bg-gray-200 p-8 lg:py-12 xl:py-16 md:rounded-2xl gap-4 lg:gap-10 w-full duration-300'>
-                <div className='flex flex-col gap-3 lg:w-1/2 lg:px-4'>
+                <div className='flex flex-col gap-6 lg:w-1/2 lg:px-4'>
                     <h1 className='text-5xl font-bold font-logo text-purple-700'>
                         Stryde
                     </h1>

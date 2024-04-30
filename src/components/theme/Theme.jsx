@@ -12,7 +12,7 @@ const Theme = () => {
 
     return (
         <div className='fixed right-0 top-0 m-5'>
-            <div className='flex gap-x-3 lg:gap-x-4 text-xl lg:text-2xl cursor-pointer'>
+            <div className='flex gap-x-3 lg:gap-x-4 text-xl lg:text-2xl cursor-pointer text-purple-500'>
                 <MdOutlineLightMode onClick={() => handleToggleTheme('light')} />
                 <MdOutlineDarkMode onClick={() => handleToggleTheme('dark')} />
             </div>
