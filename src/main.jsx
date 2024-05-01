@@ -6,7 +6,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 
-import { Home, Login, Signup, Browse, Search } from './pages/index.js'
+import { Home, Login, Signup, Browse, Search, SingleExercise } from './pages/index.js'
 import { AuthLayout } from './components/index.js'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
             <Search />
           </AuthLayout>
         )
+      },
+      {
+        path: "/search/:name",
+        element: <SingleExercise />
       }
     ]
   }

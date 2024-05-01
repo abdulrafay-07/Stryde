@@ -13,4 +13,4 @@ import UserPreference from './user preference/UserPreference';
 import SearchExercises from './search exercises/SearchExercises';
 import ExerciseCards from './cards/ExerciseCards';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, };
