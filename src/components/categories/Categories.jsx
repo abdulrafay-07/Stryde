@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LuHome, LuDumbbell, LuSearch } from 'react-icons/lu';
 
-const Categories = ({ menuOpen }) => {
+const Categories = ({ menuOpen, handleMenuOpen }) => {
     const [showText, setShowText] = useState(false);
 
     useEffect(() => {
@@ -29,11 +29,15 @@ const Categories = ({ menuOpen }) => {
             {
                 categories.map((category, index) => (
                         <div key={index} className={`text-xl 2xl:text-2xl ${menuOpen ? 'flex gap-x-3 items-center' : ''}`}>
-                            <Link to={category.to}>
+                            <Link to={category.to} 
+                                onClick={menuOpen ? handleMenuOpen : null}
+                            >
                                 <category.icon />
                             </Link>
                             {menuOpen && showText && (
-                                <Link to={category.to} className='text-sm md:text-base xl:text-xl'>
+                                <Link to={category.to} className='text-sm md:text-base xl:text-xl'
+                                    onClick={menuOpen ? handleMenuOpen : null}
+                                >
                                     {category.name}
                                 </Link>
                             )}

@@ -8,7 +8,9 @@ import Input from './common/Input';
 import Button from './common/Button';
 import Logo from './common/Logo';
 import Banner from './banner/Banner';
-import Cards from './cards/Cards';
+import SavedCards from './cards/SavedCards';
 import UserPreference from './user preference/UserPreference';
+import SearchExercises from './search exercises/SearchExercises';
+import ExerciseCards from './cards/ExerciseCards';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, Cards, UserPreference };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards };

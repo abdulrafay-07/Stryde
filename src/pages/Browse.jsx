@@ -12,11 +12,13 @@ const Browse = () => {
     useEffect(() => {
         const checkUserPreference = async () => {
             if (userData) {
-                const document = await appwriteService.getUserPreference(userData.$id);
+                const doc = await appwriteService.getUserPreference(userData.$id);
 
-                if (document) {
-                    // console.log(document);
+                if (doc.total > 0) {
+                    // console.log(doc);
                     setIsUserPrefEmpty(false);
+                    setLoading(false);
+                } else {
                     setLoading(false);
                 }
             }
@@ -34,7 +36,8 @@ const Browse = () => {
                     </div>
                 ) : (
                     <div className='flex items-center justify-center h-full'>
-                        hi
+                        Stryde
+                        {/* add workouts component */}
                     </div>
                 )
             }
