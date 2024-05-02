@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import appwriteService from '../appwrite/config';
 import { useSelector } from 'react-redux';
-import { UserPreference } from '../components/index';
+import { UserPreference, LoadingState } from '../components/index';
 
 const Browse = () => {
     const [loading, setLoading] = useState(true);
@@ -12,13 +12,17 @@ const Browse = () => {
     useEffect(() => {
         const checkUserPreference = async () => {
             if (userData) {
-                const doc = await appwriteService.getUserPreference(userData.$id);
+                try {
+                    const doc = await appwriteService.getUserPreference(userData.$id);
 
-                if (doc.total > 0) {
-                    // console.log(doc);
-                    setIsUserPrefEmpty(false);
-                    setLoading(false);
-                } else {
+                    if (doc.total > 0) {
+                        // console.log(doc);
+                        setIsUserPrefEmpty(false);
+                        setLoading(false);
+                    }
+                } catch (error) {
+                    console.log("Error fetching user preference data:", error);
+                } finally {
                     setLoading(false);
                 }
             }
@@ -42,7 +46,7 @@ const Browse = () => {
                 )
             }
         </div>
-    ) : <h1 className='flex items-center justify-center text-2xl md:text-4xl h-screen'>Loading...</h1>
+    ) : <div className='flex items-center justify-center h-screen'><LoadingState /></div>
 }
 
 export default Browse;

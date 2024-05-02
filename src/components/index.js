@@ -12,5 +12,6 @@ import SavedCards from './cards/SavedCards';
 import UserPreference from './user preference/UserPreference';
 import SearchExercises from './search exercises/SearchExercises';
 import ExerciseCards from './cards/ExerciseCards';
+import LoadingState from './common/LoadingState';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState };

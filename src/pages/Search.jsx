@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import conf from '../conf/conf';
 import { useDispatch } from 'react-redux';
 import { fetchData } from '../store/exerciseSlice';
-import { SearchExercises, ExerciseCards } from '../components/index';
+import { SearchExercises, ExerciseCards, LoadingState } from '../components/index';
 
 const Search = () => {
     const [loading, setLoading] = useState(true);
@@ -63,7 +63,7 @@ const Search = () => {
                     }
                 </div>
                 {
-                    !loading ?
+                    data.length > 0 && !loading ?
                     <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ml-10 md:ml-0 gap-4 lg:gap-6 h-full px-10 md:px-32 dark:bg-neutral-900 dark:text-white bg-white text-neutral-900'>
                         {
                             data.map((data, index) => (
@@ -76,9 +76,9 @@ const Search = () => {
                         }
                     </div>
                     : 
-                    <h1 className='flex justify-center text-2xl md:text-4xl h-screen'>
-                        Loading...
-                    </h1>
+                    <div>
+                        <LoadingState />
+                    </div>
                 }
             </div>
         </div>

@@ -19,8 +19,9 @@ const UserPreference = ({ userPref }) => {
     
             if (preferenceDB) {
                 console.log(preferenceDB);
+                navigate('/');
             } else {
-                console.log('not created');
+                console.log('User preference data error.');
             }
         }
     }    
