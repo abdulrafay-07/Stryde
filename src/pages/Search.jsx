@@ -76,7 +76,7 @@ const Search = () => {
                         }
                     </div>
                     : 
-                    <div>
+                    <div className='h-screen'>
                         <LoadingState />
                     </div>
                 }
