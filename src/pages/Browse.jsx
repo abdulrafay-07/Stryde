@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import appwriteService from '../appwrite/config';
 import { useSelector } from 'react-redux';
-import { UserPreference, LoadingState } from '../components/index';
+import { UserPreference, LoadingState, WorkoutSplit } from '../components/index';
 
 const Browse = () => {
     const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ const Browse = () => {
                         setLoading(false);
                     }
                 } catch (error) {
-                    console.log("Error fetching user preference data:", error);
+                    console.log('Error fetching user preference data:', error);
                 } finally {
                     setLoading(false);
                 }
@@ -36,12 +36,11 @@ const Browse = () => {
             {
                 isUserPrefEmpty ? (
                     <div className='flex items-center justify-center h-full'>
-                        <UserPreference />
+                        <UserPreference setIsUserPrefEmpty={setIsUserPrefEmpty} />
                     </div>
                 ) : (
                     <div className='flex items-center justify-center h-full'>
-                        Stryde
-                        {/* add workouts component */}
+                        <WorkoutSplit />
                     </div>
                 )
             }

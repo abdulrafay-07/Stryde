@@ -5,10 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import appwriteService from '../../appwrite/config';
 
-const UserPreference = ({ userPref }) => {
+const UserPreference = ({ userPref, setIsUserPrefEmpty }) => {
     const { register, handleSubmit } = useForm();
     
-    const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
     const create = async (data) => {
@@ -18,8 +17,7 @@ const UserPreference = ({ userPref }) => {
             const preferenceDB = await appwriteService.createUserPreference({...data, userId: userData.$id});
     
             if (preferenceDB) {
-                console.log(preferenceDB);
-                navigate('/');
+                setIsUserPrefEmpty(false);
             } else {
                 console.log('User preference data error.');
             }
