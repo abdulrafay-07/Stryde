@@ -83,6 +83,7 @@ export class AppwriteService {
             )
         } catch (error) {
             console.log('Appwrite service :: updateUserPreference :: error', error);
+            return false;
         }
     }
 
@@ -97,6 +98,51 @@ export class AppwriteService {
             )
         } catch (error) {
             console.log('Appwrite service :: getUserPreference :: error', error);
+            return false;
+        }
+    }
+
+    async createSavedWorkout({userId, workoutTitle}) {
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteWorkoutCollectionID,
+                ID.unique(),
+                {
+                    userId,
+                    workoutTitle
+                }
+            )
+        } catch (error) {
+            console.log('Appwrite service :: createSavedWorkout :: error', error);
+        }
+    }
+
+    async deleteSavedWorkout(documentId) {
+        try {
+            return await this.databases.deleteDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteWorkoutCollectionID,
+                documentId
+            )
+        } catch (error) {
+            console.log('Appwrite service :: deleteSavedWorkout :: error', error);
+            return false;
+        }
+    }
+
+    async getSavedWorkouts(userId) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseID,
+                conf.appwriteWorkoutCollectionID,
+                [
+                    Query.equal('userId', userId)
+                ]
+            )
+        } catch (error) {
+            console.log('Appwrite service :: getSavedWorkouts :: error', error);
+            return false;
         }
     }
 }
