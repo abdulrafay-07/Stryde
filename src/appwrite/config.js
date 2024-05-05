@@ -102,7 +102,7 @@ export class AppwriteService {
         }
     }
 
-    async createSavedWorkout({userId, workoutTitle}) {
+    async createSavedWorkout({userId, workoutTitle, workoutDaysPerWeek}) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseID,
@@ -110,7 +110,8 @@ export class AppwriteService {
                 ID.unique(),
                 {
                     userId,
-                    workoutTitle
+                    workoutTitle,
+                    workoutDaysPerWeek
                 }
             )
         } catch (error) {

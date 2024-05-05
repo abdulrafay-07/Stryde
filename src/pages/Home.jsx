@@ -25,11 +25,11 @@ const Home = () => {
     }, [isAuthenticated])
 
     return isAuthenticated ? (
-        <div className='font-primary h-full'>
+        <div className='font-primary h-full min-h-screen'>
             {
                 !loading ? (
-                    <div className='flex flex-col'>
-                        <Banner userData={userData} />
+                    <div className='flex flex-col justify-center'>
+                        <Banner />
                         <SavedCards />
                     </div>
                 ) : 

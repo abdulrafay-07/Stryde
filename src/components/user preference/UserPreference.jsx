@@ -25,7 +25,7 @@ const UserPreference = ({ userPref, setIsUserPrefEmpty }) => {
     }    
 
     return (
-        <form onSubmit={handleSubmit(create)} className='w-1/2 flex justify-center'>
+        <form onSubmit={handleSubmit(create)} className='ml-4 md:ml-0 w-2/3 md:w-1/2 flex justify-center'>
             <div>
                 <Input
                     label='How many days do you want to go to the gym?'

@@ -53,7 +53,7 @@ const Search = () => {
     }, [loading, data, term]);
 
     return (
-        <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300 h-full'>
+        <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300 h-full min-h-screen'>
             <div className='flex flex-col h-full justify-stretch py-28 items-center gap-20'>
                 <div className='w-2/3 ml-10 md:ml-0 md:w-full text-center'>
                     <SearchExercises searchText={handleSearch} />

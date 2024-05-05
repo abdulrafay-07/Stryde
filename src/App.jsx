@@ -43,7 +43,7 @@ const App = () => {
           )
         }
       </div>
-      <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 duration-300'>
+      <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 duration-300 h-full'>
         <Theme />
         <Outlet />
       </div>

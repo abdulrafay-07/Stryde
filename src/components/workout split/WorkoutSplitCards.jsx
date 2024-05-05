@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CiHeart } from 'react-icons/ci';
+import { FaHeart } from 'react-icons/fa';
 import appwriteService from '../../appwrite/config';
 
 const WorkoutSplitCards = ({ selectedSplit }) => {
@@ -13,8 +14,6 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
             try {
                 const savedWorkoutsData = await appwriteService.getSavedWorkouts(userData.$id);
 
-                console.log(savedWorkoutsData.documents);
-
                 setSavedWorkouts(savedWorkoutsData.documents);
             } catch (error) {
                 console.log('Error fetching saved workouts data:', error);
@@ -26,21 +25,24 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
         getSavedWorkouts();
     }, [])
 
-    const editWorkout = async (title) => {
+    const editWorkout = async (title, workoutDaysPerWeek) => {
         if (userData) {
             const filteredWorkout = savedWorkouts.filter((workout) => workout.workoutTitle === title);
+            
             if (filteredWorkout.length > 0) {
                 const documentId = filteredWorkout[0].$id;
                 await appwriteService.deleteSavedWorkout(documentId);
             } else {
-                const workoutDB = await appwriteService.createSavedWorkout({userId: userData.$id, workoutTitle: title});
-
-                console.log(workoutDB);
+                const workoutDB = await appwriteService.createSavedWorkout({userId: userData.$id, workoutTitle: title, workoutDaysPerWeek});
             }
 
             getSavedWorkouts();
         }
     }
+
+    const isWorkoutSaved = (title) => {
+        return savedWorkouts.some(savedWorkout => savedWorkout.workoutTitle === title);
+    };
 
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8'>
@@ -74,8 +76,10 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
                             </div>
                         </div>
                         
-                        <button className='flex items-end text-purple-500' onClick={() => editWorkout(selectedSplit[splitKey].title)}>
-                            <CiHeart />
+                        <button className='flex items-end text-purple-500' 
+                            onClick={() => editWorkout(selectedSplit[splitKey].title, selectedSplit[splitKey].workoutDaysPerWeek)}
+                        >
+                            {isWorkoutSaved(selectedSplit[splitKey].title) ? <FaHeart className='text-xl' /> : <CiHeart className='text-2xl' />}
                         </button>
                     </div>
                 </div>

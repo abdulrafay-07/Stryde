@@ -32,14 +32,14 @@ const Browse = () => {
     }, [])
 
     return !loading ? (
-        <div className='h-screen dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300'>
+        <div className='h-full min-h-screen dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300'>
             {
                 isUserPrefEmpty ? (
-                    <div className='flex items-center justify-center h-full'>
+                    <div className='flex justify-center py-20'>
                         <UserPreference setIsUserPrefEmpty={setIsUserPrefEmpty} />
                     </div>
                 ) : (
-                    <div className='flex items-center justify-center h-full'>
+                    <div className='flex justify-center py-20'>
                         <WorkoutSplit />
                     </div>
                 )

@@ -17,4 +17,4 @@ import workoutData from './utils/workoutRegime';
 import WorkoutSplit from './workout split/WorkoutSplit';
 import WorkoutSplitCards from './workout split/WorkoutSplitCards';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, workoutData, WorkoutSplit, WorkoutSplitCards };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, workoutData, WorkoutSplit, WorkoutSplitCards, };

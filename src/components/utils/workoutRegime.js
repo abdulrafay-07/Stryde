@@ -4,6 +4,7 @@ const workoutData = {
         split1: {
             title: 'Upper/Lower',
             musclesFocused: 'Full Body',
+            workoutDaysPerWeek: 2,
             day1: {
                 title: 'Upper Body',
                 exercises: [
@@ -108,6 +109,7 @@ const workoutData = {
         split2: {
             title: 'Full Body',
             musclesFocused: 'Full Body',
+            workoutDaysPerWeek: 2,
             day1: {
                 title: 'Full Body 1',
                 exercises: [
@@ -218,6 +220,7 @@ const workoutData = {
         split3: {
             title: 'Push/Pull',
             musclesFocused: 'Upper Body',
+            workoutDaysPerWeek: 2,
             day1: {
                 title: 'Push Day',
                 exercises: [
@@ -301,6 +304,7 @@ const workoutData = {
         split1: {
             title: 'Push/Pull/Legs',
             musclesFocused: 'Full Body',
+            workoutDaysPerWeek: 3,
             day1: {
                 title: 'Push Day',
                 exercises: [
@@ -428,6 +432,7 @@ const workoutData = {
         split2: {
             title: 'Upper/Lower (Upper Day Focused)',
             musclesFocused: 'Full Body',
+            workoutDaysPerWeek: 3,
             day1: {
                 title: 'Upper Body',
                 exercises: [
@@ -585,6 +590,7 @@ const workoutData = {
         split3: {
             title: 'Full Body',
             musclesFocused: 'Full Body',
+            workoutDaysPerWeek: 3,
             day1: {
                 title: 'Full Body 1',
                 exercises: [
@@ -715,6 +721,7 @@ const workoutData = {
         split1: {
             title: 'Upper/Lower',
             musclesFocused: 'Full Body',
+            workoutDaysPerWeek: 4,
             day1: {
                 title: 'Upper Body',
                 exercises: [
@@ -919,6 +926,7 @@ const workoutData = {
         split2: {
             title: 'Push/Pull',
             musclesFocused: 'Upper Body',
+            workoutDaysPerWeek: 4,
             day1: {
                 title: 'Push Day',
                 exercises: [
@@ -1075,6 +1083,7 @@ const workoutData = {
         split3: {
             title: 'Bro Split',
             musclesFocused: 'Full Body',
+            workoutDaysPerWeek: 4,
             day1: {
                 title: 'Chest and Shoulders',
                 exercises: [

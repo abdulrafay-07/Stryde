@@ -1,12 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Banner = ({ userData }) => {
+const Banner = () => {
+    const userData = useSelector((state) => state.auth.userData);
+
     if (!userData) {
         return null;
     }
 
     return (
-        <div className='flex px-24 md:px-28 py-32 h-[50vh]'>
+        <div className='flex px-24 md:px-28 py-32'>
             <h1 className='text-2xl md:text-3xl xl:text-6xl font-bold md:flex md:justify-center md:items-center w-full'>
                 Welcome to &nbsp;
                 <span className='text-purple-700 text-4xl md:text-4xl xl:text-7xl block md:inline-flex font-logo'>Stryde
