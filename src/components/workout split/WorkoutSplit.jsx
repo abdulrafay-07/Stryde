@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { WorkoutSplitCards, workoutData } from '../index';
-import appwriteService from '../../appwrite/config';
+import { WorkoutSplitCards } from '../index';
 import { LoadingState } from '../index';
+import workoutData from '../../utils/workoutRegime';
+import appwriteService from '../../appwrite/config';
 
 const WorkoutSplit = () => {
     const [loading, setLoading] = useState(true);

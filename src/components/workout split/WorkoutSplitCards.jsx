@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { CiHeart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'
 import appwriteService from '../../appwrite/config';
+import useHandleClick from '../../hooks/useHandleClick';
 
 const WorkoutSplitCards = ({ selectedSplit }) => {
     const [savedWorkouts, setSavedWorkouts] = useState([]);
 
     const userData = useSelector((state) => state.auth.userData);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const getSavedWorkouts = async () => {
         if (userData) {
@@ -44,15 +49,21 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
         return savedWorkouts.some(savedWorkout => savedWorkout.workoutTitle === title);
     };
 
+    const handleClick = useHandleClick(dispatch, navigate);
+
+    const handleWorkoutData = (data) => {
+        handleClick(data);
+    }
+
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8'>
             {Object.keys(selectedSplit).map((splitKey, index) => (
                 <div 
                     key={index}
-                    className='space-y-2 p-2 md:p-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300'
+                    className='space-y-2 p-2 md:p-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300 cursor-pointer'
                 >
                     <div className='flex justify-between'>
-                        <div>
+                        <div onClick={() => handleWorkoutData(selectedSplit[splitKey])}>
                             <h1>
                                 <span className='font-bold'>Split Name:</span> {selectedSplit[splitKey].title}
                             </h1>

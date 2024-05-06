@@ -32,19 +32,23 @@ const App = () => {
           status ? (
             <div>
               <Menu />
-              <Link to='/' className='fixed bottom-0 right-0 m-4'>
+              <Link to='/' className='fixed top-0 right-0 m-4'>
                 <Logo />
               </Link>
             </div>
           ) : (
-            <div className='fixed top-0 left-0 m-4'>
-              <Logo />
+            <div>
+              <div className='fixed right-0 top-0 m-5'>
+                <Theme />
+              </div>
+              <div className='fixed top-0 left-0 m-4'>
+                <Logo />
+              </div>
             </div>
           )
         }
       </div>
       <div className='dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 duration-300 h-full'>
-        <Theme />
         <Outlet />
       </div>
     </div>

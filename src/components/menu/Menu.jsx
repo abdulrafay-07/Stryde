@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import { Categories } from '../index';
+import { Categories, Theme } from '../index';
 import { IoIosLogOut } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,11 +9,25 @@ import appwriteService from '../../appwrite/config';
 
 const Menu = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [showTheme, setShowTheme] = useState(false);
 
     const isAuthenticated = useSelector(state => state.auth.status);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        let timeoutId;
+        if (menuOpen) {
+            timeoutId = setTimeout(() => {
+                setShowTheme(true);
+            }, 300);
+        } else {
+            setShowTheme(false);
+        }
+
+        return () => clearTimeout(timeoutId);
+    }, [menuOpen]);
 
     const handleMenuOpen = () => {
         setMenuOpen(!menuOpen);
@@ -35,10 +49,19 @@ const Menu = () => {
                 />
             </div>
             <Categories menuOpen={menuOpen} handleMenuOpen={handleMenuOpen} />
-            <div className='fixed bottom-0 left-0 m-4 lg:m-6 cursor-pointer text-2xl'>
+            <div className='flex justify-between'>
+                <div className='fixed bottom-0 left-0 m-4 lg:m-6 cursor-pointer text-2xl'>
+                    {
+                        isAuthenticated && (
+                            <IoIosLogOut className='text-purple-500 hover:text-purple-700 ease-in duration-150' onClick={logoutHandler} />
+                        )
+                    }
+                </div>
                 {
-                    isAuthenticated && (
-                        <IoIosLogOut className='text-purple-500 hover:text-purple-700 ease-in duration-150' onClick={logoutHandler} />
+                    menuOpen && showTheme && (
+                        <div className='fixed right-0 bottom-0 m-4 lg:m-6'>
+                            <Theme />
+                        </div>
                     )
                 }
             </div>

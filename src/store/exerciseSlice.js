@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    data: []
+    exerciseData: []
 }
 
 const exerciseSlice = createSlice({
@@ -9,7 +9,7 @@ const exerciseSlice = createSlice({
     initialState,
     reducers: {
         fetchData: (state, action) => {
-            state.data.push(action.payload);
+            state.exerciseData.push(action.payload);
         }
     }
 })

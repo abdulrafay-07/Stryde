@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { LoadingState } from '../components/index';
 
 const SingleExercises = () => {
     const [exercise, setExercise] = useState([]);
@@ -8,7 +9,7 @@ const SingleExercises = () => {
 
     const { name } = useParams();
 
-    const data = useSelector(state => state.exercise.data);
+    const data = useSelector(state => state.exercise.exerciseData);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,8 +27,8 @@ const SingleExercises = () => {
     }, [])
 
     return !loading ? (
-        <div className='h-screen dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300 max-w-5xl mx-auto'>
-            <div className='flex justify-center py-40 pl-20 pr-4 md:pl-28 md:pr-8 gap-16 h-full'>
+        <div className='h-screen max-w-5xl mx-auto py-40 pl-20 pr-4 md:pl-28 md:pr-8'>
+            <div className='flex justify-center gap-16 h-full dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300'>
                 <div className='flex flex-col gap-4 xl:gap-6'>
                     <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{exercise.name}</h1>
                     <span className='lg:ml-2'>Targeted Muscle: {exercise.muscle}, difficulty {exercise.difficulty}</span>
@@ -37,7 +38,10 @@ const SingleExercises = () => {
                 </div>
             </div>
         </div>
-    ) : <h1 className='flex items-center justify-center text-2xl md:text-4xl h-screen'>Loading...</h1>
+    ) : 
+    <div className='flex items-center justify-center text-2xl md:text-4xl h-screen'>
+        <LoadingState />
+    </div>
 }
 
 export default SingleExercises;

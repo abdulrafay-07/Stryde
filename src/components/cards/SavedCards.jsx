@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { workoutData } from '../index';
+import { useSelector, useDispatch } from 'react-redux';
+import workoutData from '../../utils/workoutRegime';
 import appwriteService from '../../appwrite/config';
+import { Link, useNavigate } from 'react-router-dom';
+import useHandleClick from '../../hooks/useHandleClick';
 
 const SavedCards = () => {
     const [savedWorkouts, setSavedWorkouts] = useState([]);
     const [filteredSavedWorkouts, setFilteredSavedWorkouts] = useState([]);
 
     const userData = useSelector((state) => state.auth.userData);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     useEffect(() => {
         getSavedWorkouts();
@@ -51,13 +56,21 @@ const SavedCards = () => {
         return filtered;
     }
 
+    const handleClick = useHandleClick(dispatch, navigate);
+
+    const handleWorkoutData = (data) => {
+        handleClick(data);
+    }
+
     return (
-        <div className='flex justify-center items-start px-24 md:px-28 h-full'>
+        <div className='flex flex-col gap-4 md:gap-6 lg:gap-8 justify-start items-center px-24 md:px-28 h-full'>
+            <h1 className='text-xl md:text-4xl font-bold'>Saved Workouts</h1>
             <div className='flex flex-wrap gap-6 lg:gap-8'>
                 {filteredSavedWorkouts && filteredSavedWorkouts.length > 0 ? (
                     filteredSavedWorkouts.map((workout, index) => (
                         <div key={index} 
-                            className='space-y-2 p-2 md:p-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300'
+                            className='space-y-2 p-2 md:p-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300 cursor-pointer'
+                            onClick={() => handleWorkoutData(workout)}
                         >
                             <div>
                                 <h1>
@@ -79,7 +92,9 @@ const SavedCards = () => {
                         </div>
                     ))
                 ) : (
-                    <div>No saved workouts found.</div>
+                    <div className='text-center'>
+                        No saved workouts found, <Link to='/browse' className='font-semibold text-purple-500 hover:text-purple-400 duration-150'>Browse</Link> to save workouts.
+                    </div>
                 )}
             </div>
         </div>

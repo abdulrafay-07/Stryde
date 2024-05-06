@@ -40,8 +40,8 @@ const Search = () => {
         setTerm(text);
     }
 
-    const retrieveData = (data) => {
-        dispatch(fetchData(data));
+    const retrieveData = (exerciseData) => {
+        dispatch(fetchData(exerciseData));
     }
 
     useEffect(() => {
