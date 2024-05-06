@@ -5,6 +5,8 @@ import { FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'
 import appwriteService from '../../appwrite/config';
 import useHandleClick from '../../hooks/useHandleClick';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/ReactToastify.css';
 
 const WorkoutSplitCards = ({ selectedSplit }) => {
     const [savedWorkouts, setSavedWorkouts] = useState([]);
@@ -13,6 +15,22 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const notify = (answer) => {
+        if (answer == 'deleted') {
+            toast('Workout deleted successfully!', {
+                position: 'top-right',
+                theme: 'dark',
+                autoClose: 1000,
+            });
+        } else if (answer == 'saved') {
+            toast('Workout saved successfully!', {
+                position: 'top-right',
+                theme: 'dark',
+                autoClose: 1000,
+            });
+        }
+    }
 
     const getSavedWorkouts = async () => {
         if (userData) {
@@ -37,8 +55,10 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
             if (filteredWorkout.length > 0) {
                 const documentId = filteredWorkout[0].$id;
                 await appwriteService.deleteSavedWorkout(documentId);
+                notify('deleted');
             } else {
                 const workoutDB = await appwriteService.createSavedWorkout({userId: userData.$id, workoutTitle: title, workoutDaysPerWeek});
+                notify('saved');
             }
 
             getSavedWorkouts();
@@ -98,6 +118,7 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
                     </div>
                 </div>
             ))}
+            <ToastContainer />
         </div>
     )
 }

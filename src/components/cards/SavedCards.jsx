@@ -15,8 +15,10 @@ const SavedCards = () => {
     const navigate = useNavigate();
     
     useEffect(() => {
-        getSavedWorkouts();
-    }, [])
+        if (userData) {
+            getSavedWorkouts();
+        }
+    }, [userData])
 
     useEffect(() => {
         if (savedWorkouts.length > 0) {
@@ -26,13 +28,11 @@ const SavedCards = () => {
     }, [savedWorkouts]);
 
     const getSavedWorkouts = async () => {
-        if (userData) {
-            try {
-                const savedWorkoutsData = await appwriteService.getSavedWorkouts(userData.$id);
-                setSavedWorkouts(savedWorkoutsData.documents);
-            } catch (error) {
-                console.log('Error fetching saved workouts data:', error);
-            }
+        try {
+            const savedWorkoutsData = await appwriteService.getSavedWorkouts(userData.$id);
+            setSavedWorkouts(savedWorkoutsData.documents);
+        } catch (error) {
+            console.log('Error fetching saved workouts data:', error);
         }
     }
 
