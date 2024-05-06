@@ -6,7 +6,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 
-import { Home, Login, Signup, Browse, Search, SingleExercise, WorkoutRegime } from './pages/index.js'
+import { Home, Login, Signup, Browse, Search, SingleExercise, WorkoutRegime, EditPreference } from './pages/index.js'
 import { AuthLayout } from './components/index.js'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -52,6 +52,15 @@ const router = createBrowserRouter([
           <AuthLayout authentication>
             {' '}
             <Search />
+          </AuthLayout>
+        )
+      },
+      {
+        path: '/edit-split',
+        element: (
+          <AuthLayout authentication>
+            {' '}
+            <EditPreference />
           </AuthLayout>
         )
       },

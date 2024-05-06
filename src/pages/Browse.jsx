@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import appwriteService from '../appwrite/config';
 import { useSelector } from 'react-redux';
-import { UserPreference, LoadingState, WorkoutSplit } from '../components/index';
+import { UserPreference, LoadingState, WorkoutSplit, UpdateUserPreference } from '../components/index';
 
 const Browse = () => {
     const [loading, setLoading] = useState(true);
@@ -40,6 +40,7 @@ const Browse = () => {
                     </div>
                 ) : (
                     <div className='flex justify-center py-20'>
+                        <UpdateUserPreference />
                         <WorkoutSplit />
                     </div>
                 )

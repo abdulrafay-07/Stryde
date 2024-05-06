@@ -45,8 +45,11 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
         }
     }
 
-    const isWorkoutSaved = (title) => {
-        return savedWorkouts.some(savedWorkout => savedWorkout.workoutTitle === title);
+    const isWorkoutSaved = (title, days) => {
+        return savedWorkouts.some(
+            savedWorkout => savedWorkout.workoutTitle === title &&
+            savedWorkout.workoutDaysPerWeek === days
+        );
     };
 
     const handleClick = useHandleClick(dispatch, navigate);
@@ -90,7 +93,7 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
                         <button className='flex items-end text-purple-500' 
                             onClick={() => editWorkout(selectedSplit[splitKey].title, selectedSplit[splitKey].workoutDaysPerWeek)}
                         >
-                            {isWorkoutSaved(selectedSplit[splitKey].title) ? <FaHeart className='text-xl' /> : <CiHeart className='text-2xl' />}
+                            {isWorkoutSaved(selectedSplit[splitKey].title, selectedSplit[splitKey].workoutDaysPerWeek) ? <FaHeart className='text-xl' /> : <CiHeart className='text-2xl' />}
                         </button>
                     </div>
                 </div>

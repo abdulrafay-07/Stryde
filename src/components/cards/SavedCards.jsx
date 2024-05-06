@@ -63,7 +63,7 @@ const SavedCards = () => {
     }
 
     return (
-        <div className='flex flex-col gap-4 md:gap-6 lg:gap-8 justify-start items-center px-24 md:px-28 h-full'>
+        <div className='flex flex-col gap-4 md:gap-6 lg:gap-8 justify-start items-center px-24 pb-8 md:px-28 h-full'>
             <h1 className='text-xl md:text-4xl font-bold'>Saved Workouts</h1>
             <div className='flex flex-wrap gap-6 lg:gap-8'>
                 {filteredSavedWorkouts && filteredSavedWorkouts.length > 0 ? (
