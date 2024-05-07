@@ -59,7 +59,10 @@ const Menu = () => {
                 </div>
                 {
                     menuOpen && showTheme && (
-                        <div className='fixed right-0 bottom-0 m-4 lg:m-6'>
+                        <div
+                            className='fixed right-0 bottom-0 m-4 lg:m-6'
+                            onClick={menuOpen ? handleMenuOpen : null}
+                        >
                             <Theme />
                         </div>
                     )

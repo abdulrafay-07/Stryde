@@ -40,7 +40,7 @@ const Login = () => {
                     <h1 className='text-5xl font-bold font-logo text-purple-700'>
                         Stryde
                     </h1>
-                    <p className='hidden lg:flex'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur earum explicabo et numquam adipisci ullam eveniet natus nemo neque magnam. Deserunt eius nostrum et voluptas minus culpa quam ipsa asperiores.</p>
+                    <p className='hidden lg:block'><span className='font-bold'>Stryde</span> empowers you to <span className='font-bold'>train smarter, not harder</span>. Find workouts tailored to your goals, whether you're a seasoned gym-goer or just starting out. Explore a vast exercise library to target specific muscle groups, discover workout splits that fit your schedule (from 2 to 7 days a week), and save your favorites for easy access. <span className='font-bold'>Stryde puts the power of personalized fitness in your hands</span>.</p>
                 </div>
                 <div className='flex flex-col gap-3 lg:w-1/2 lg:px-4'>
                     <h1 className='text-3xl font-semibold'>Sign in</h1>
