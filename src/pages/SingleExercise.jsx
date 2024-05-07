@@ -27,7 +27,7 @@ const SingleExercises = () => {
     }, [])
 
     return !loading ? (
-        <div className='h-screen max-w-5xl mx-auto py-40 pl-20 pr-4 md:pl-28 md:pr-8'>
+        <div className='h-full min-h-screen max-w-5xl mx-auto py-40 pl-20 pr-4 md:pl-28 md:pr-8'>
             <div className='flex justify-center gap-16 h-full dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300'>
                 <div className='flex flex-col gap-4 xl:gap-6'>
                     <h1 className='font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{exercise.name}</h1>
