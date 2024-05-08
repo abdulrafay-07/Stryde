@@ -39,7 +39,7 @@ const WorkoutSplit = () => {
 
     return !loading ? (
         selectedSplit ? (
-            <div className='flex flex-col gap-4 md:gap-8 lg:gap-10 px-20'>
+            <div className='flex flex-col gap-4 md:gap-8 lg:gap-10 pl-20 pr-4 md:pr-0'>
                 <h1 className='text-2xl font-bold text-center duration-300'>{workoutDaysPerWeek}-Day Workout Splits</h1>
 
                 <WorkoutSplitCards selectedSplit={selectedSplit} />
