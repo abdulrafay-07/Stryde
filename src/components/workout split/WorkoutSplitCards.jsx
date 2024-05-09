@@ -85,7 +85,7 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
                     key={index}
                     className='space-y-2 p-2 md:p-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300 cursor-pointer'
                 >
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between h-full'>
                         <div onClick={() => handleWorkoutData(selectedSplit[splitKey])}>
                             <h1>
                                 <span className='font-bold'>Split Name:</span> {selectedSplit[splitKey].title}
@@ -110,7 +110,7 @@ const WorkoutSplitCards = ({ selectedSplit }) => {
                             </div>
                         </div>
                         
-                        <button className='flex items-end text-purple-500' 
+                        <button className='flex items-end text-purple-500 h-full' 
                             onClick={() => editWorkout(selectedSplit[splitKey].title, selectedSplit[splitKey].workoutDaysPerWeek)}
                         >
                             {isWorkoutSaved(selectedSplit[splitKey].title, selectedSplit[splitKey].workoutDaysPerWeek) ? <FaHeart className='text-xl' /> : <CiHeart className='text-2xl' />}
