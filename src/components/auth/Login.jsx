@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Input, Button } from '../index';
 import appwriteService from '../../appwrite/config';
+import conf from '../../conf/conf';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -25,6 +26,12 @@ const Login = () => {
 
                 if (userData) {
                     dispatch(authLogin(userData));
+
+                    const userInfoDB = await appwriteService.getUserInformation(userData.$id);
+
+                    if (userInfoDB.documents.length == 0) {
+                        await appwriteService.createUserInformation({userId: userData.$id, profilePicId: conf.appwriteDefaultImageID});
+                    }
                 }
                 navigate('/');
             }

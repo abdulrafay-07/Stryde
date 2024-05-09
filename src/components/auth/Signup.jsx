@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Input, Button } from '../index';
 import { login as authLogin } from '../../store/authSlice';
 import appwriteService from '../../appwrite/config';
+import conf from '../../conf/conf';
 
 const Signup = () => {
     const [error, setError] = useState('');
@@ -25,6 +26,8 @@ const Signup = () => {
 
                 if (userData) {
                     dispatch(authLogin(userData));
+
+                    await appwriteService.createUserInformation({userId: userData.$id, profilePicId: conf.appwriteDefaultImageID});
                 }
                 navigate('/');
             }

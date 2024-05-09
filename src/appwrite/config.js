@@ -1,10 +1,11 @@
 import conf from '../conf/conf';
-import { Client, Account, Databases, ID, Query } from 'appwrite';
+import { Client, Account, Databases, Storage, ID, Query } from 'appwrite';
 
 export class AppwriteService {
     client = new Client();
     account;
     databases;
+    bucket;
 
     constructor() {
         this.client
@@ -12,6 +13,7 @@ export class AppwriteService {
             .setProject(conf.appwriteProjectID);
         this.account = new Account(this.client);
         this.databases = new Databases(this.client);
+        this.bucket = new Storage(this.client);
     }
 
     // authentication methods
@@ -54,6 +56,8 @@ export class AppwriteService {
     }
 
     // databases methods
+
+    // User Preference
 
     async createUserPreference({workoutDaysPerWeek, userId}) {
         try {
@@ -102,6 +106,8 @@ export class AppwriteService {
         }
     }
 
+    // Saved Workouts
+
     async createSavedWorkout({userId, workoutTitle, workoutDaysPerWeek}) {
         try {
             return await this.databases.createDocument(
@@ -145,6 +151,89 @@ export class AppwriteService {
             console.log('Appwrite service :: getSavedWorkouts :: error', error);
             return false;
         }
+    }
+
+    // User Info
+
+    async createUserInformation({userId, profilePicId}) {
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteUserInfoCollectionID,
+                ID.unique(),
+                {
+                    userId,
+                    profilePicId
+                }
+            )
+        } catch (error) {
+            console.log('Appwrite service :: createUserInformation :: error', error);
+        }
+    }
+
+    async updateUserInformation(documentId, {profilePicId}) {
+        try {
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteUserInfoCollectionID,
+                documentId,
+                {
+                    profilePicId
+                }
+            )
+        } catch (error) {
+            console.log('Appwrite service :: updateUserInformation :: error', error);
+            return false;
+        }
+    }
+
+    async getUserInformation(userId) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseID,
+                conf.appwriteUserInfoCollectionID,
+                [
+                    Query.equal('userId', userId)
+                ]
+            )
+        } catch (error) {
+            console.log('Appwrite service :: getUserInformation :: error', error);
+            return false;
+        }
+    }
+
+    // storage methods
+
+    async uploadFile(file) {
+        try {
+            return await this.bucket.createFile(
+                conf.appwritePFPBucketID,
+                ID.unique(),
+                file
+            )
+        } catch (error) {
+            console.log("Appwrite service :: uploadFile :: error", error);
+            return false;
+        }
+    }
+
+    async deleteFile(fileId) {
+        try {
+            return await this.bucket.deleteFile(
+                conf.appwritePFPBucketID,
+                fileId
+            )
+        } catch (error) {
+            console.log("Appwrite service :: deleteFile :: error", error);
+            return false;
+        }
+    }
+
+    getFilePreview(fileId) {
+        return this.bucket.getFilePreview(
+            conf.appwritePFPBucketID,
+            fileId
+        )
     }
 }
 

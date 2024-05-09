@@ -6,5 +6,6 @@ import Search from './Search';
 import SingleExercise from './SingleExercise';
 import WorkoutRegime from './WorkoutRegime';
 import EditPreference from './EditPreference';
+import UserInfo from './UserInfo';
 
-export { Home, Login, Signup, Browse, Search, SingleExercise, WorkoutRegime, EditPreference };
+export { Home, Login, Signup, Browse, Search, SingleExercise, WorkoutRegime, EditPreference, UserInfo };
