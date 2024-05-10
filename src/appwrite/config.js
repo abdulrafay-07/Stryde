@@ -57,6 +57,43 @@ export class AppwriteService {
         }
     }
 
+    // account information methods 
+
+    async updateEmail({email, password}) {
+        try {
+            return await this.account.updateEmail(
+                email,
+                password
+            )
+        } catch (error) {
+            throw(error);
+            console.log('Appwrite service :: updateEmail :: error', error);
+        }
+    }
+
+    async updateName({name}) {
+        try {
+            return await this.account.updateName(
+                name
+            )
+        } catch (error) {
+            throw(error);
+            console.log('Appwrite service :: updateName :: error', error);
+        }
+    }
+
+    async updatePassword({newPassword, oldPassword}) {
+        try {
+            return await this.account.updatePassword(
+                newPassword,
+                oldPassword
+            )
+        } catch (error) {
+            throw(error);
+            console.log('Appwrite service :: updatePassword :: error', error);
+        }
+    }
+
     // databases methods
 
     // User Preference

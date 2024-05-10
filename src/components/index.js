@@ -16,5 +16,7 @@ import LoadingState from './common/LoadingState';
 import WorkoutSplit from './workout split/WorkoutSplit';
 import WorkoutSplitCards from './workout split/WorkoutSplitCards';
 import UpdateUserPreference from './user preference/UpdateUserPreference';
+import ProfilePic from './user info/ProfilePic';
+import ProfileCredentials from './user info/ProfileCredentials';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference, ProfilePic, ProfileCredentials };
