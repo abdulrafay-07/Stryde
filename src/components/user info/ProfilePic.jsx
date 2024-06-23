@@ -11,18 +11,22 @@ const ProfilePic = ({ userDoc, imageId, setImageId }) => {
     const { register, handleSubmit } = useForm();
 
     const notify = () => {
-        toast('Profile Picture Updated!', {
-            position: 'top-right',
-            theme: 'dark',
-            autoClose: 1000,
-        });
+        // TODO: FIX toast issue, showing toast then giving some undefined error
+        // toast('Profile Picture Updated!', {
+        //     position: 'top-right',
+        //     theme: 'dark',
+        //     autoClose: 1000,
+        // });
+
+        // temporary fix
+        alert("Profile Picture Updated");
     }
 
     const uploadFile = async (data) => {
-        const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+        const file = data.image[0] ? await appwriteService.uploadPFPFile(data.image[0]) : null;
 
         if (file && imageId != conf.appwriteDefaultImageID) {
-            await appwriteService.deleteFile(imageId);
+            await appwriteService.deletePFPFile(imageId);
         }
 
         const updateUserInfo = await appwriteService.updateUserInformation(userDoc.$id, {profilePicId: file ?file.$id : undefined});
@@ -30,7 +34,7 @@ const ProfilePic = ({ userDoc, imageId, setImageId }) => {
 
         if (updateUserInfo) {
             setImageId(file ? file.$id : '');
-
+            
             notify();
         }
     }
@@ -39,7 +43,7 @@ const ProfilePic = ({ userDoc, imageId, setImageId }) => {
         <div className='flex flex-col md:flex-row justify-center md:gap-8 p-4 md:py-6 md:px-10 border-2 rounded-md border-neutral-900 dark:border-white'>
             <div className='flex justify-center'>
                 <img 
-                    src={appwriteService.getFilePreview(imageId)} 
+                    src={appwriteService.getPFPFilePreview(imageId)} 
                     className='aspect-square object-cover w-24 md:w-36 lg:w-48 rounded-full border-2 border-neutral-900 dark:border-white mb-6 md:mb-0'
                 />
             </div>

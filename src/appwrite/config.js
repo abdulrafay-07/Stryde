@@ -241,9 +241,101 @@ export class AppwriteService {
         }
     }
 
+    // Community Forums
+
+    async createForum({title, slug, content, userId, imageId, category}) {
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteForumsCollectionID,
+                slug,
+                {
+                    title,
+                    content,
+                    userId,
+                    imageId,
+                    category,
+                }
+            )
+        } catch (error) {
+            console.log("Appwrite service :: createForum :: error", error);
+        }
+    }
+
+    async updateForum(slug, {title, content, imageId, category}) {
+        try {
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteForumsCollectionID,
+                slug,
+                {
+                    title,
+                    content,
+                    imageId,
+                    category,
+                }
+            )
+        } catch (error) {
+            console.log("Appwrite service :: updateForum :: error", error);
+        }
+    }
+
+    async deleteForum(slug) {
+        try {
+            return await this.databases.deleteDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteForumsCollectionID,
+                slug,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: deleteForum :: error", error);
+            return false;
+        }
+    }
+
+    async getForum(slug) {
+        try {
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseID,
+                conf.appwriteForumsCollectionID,
+                slug,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: getForum :: error", error);
+            return false;
+        }
+    }
+
+    async getForums() {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseID,
+                conf.appwriteForumsCollectionID,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: getForums :: error", error);
+            return false;
+        }
+    }
+
+    async getForumsByCategory(category) {
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseID,
+                conf.appwriteForumsCollectionID,
+                Query.equal("category", category),
+            )
+        } catch (error) {
+            console.log("Appwrite service :: getForumsByCategory :: error", error);
+            return false;
+        }
+    }
+
     // storage methods
 
-    async uploadFile(file) {
+    // profile picture
+
+    async uploadPFPFile(file) {
         try {
             return await this.bucket.createFile(
                 conf.appwritePFPBucketID,
@@ -251,27 +343,61 @@ export class AppwriteService {
                 file
             )
         } catch (error) {
-            console.log("Appwrite service :: uploadFile :: error", error);
+            console.log("Appwrite service :: uploadPFPFile :: error", error);
             return false;
         }
     }
 
-    async deleteFile(fileId) {
+    async deletePFPFile(fileId) {
         try {
             return await this.bucket.deleteFile(
                 conf.appwritePFPBucketID,
                 fileId
             )
         } catch (error) {
-            console.log("Appwrite service :: deleteFile :: error", error);
+            console.log("Appwrite service :: deletePFPFile :: error", error);
             return false;
         }
     }
 
-    getFilePreview(fileId) {
+    getPFPFilePreview(fileId) {
         return this.bucket.getFilePreview(
             conf.appwritePFPBucketID,
             fileId
+        )
+    }
+
+    // forum images
+
+    async uploadForumImageFile(file) {
+        try {
+            return await this.bucket.createFile(
+                conf.appwriteForumImagesBucketID,
+                ID.unique(),
+                file,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: uploadForumImageFile :: error", error);
+            return false;
+        }
+    }
+
+    async deleteForumImageFile(fileId) {
+        try {
+            return await this.bucket.deleteFile(
+                conf.appwriteForumImagesBucketID,
+                fileId,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: deleteForumImageFile :: error", error);
+            return false;
+        }
+    }
+
+    getForumImageFilePreview(fildId) {
+        return this.bucket.getFilePreview(
+            conf.appwriteForumImagesBucketID,
+            fildId,
         )
     }
 }

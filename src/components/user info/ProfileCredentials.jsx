@@ -101,8 +101,8 @@ const ProfileCredentials = () => {
     }
 
     return (
-        <div className='flex flex-col xl:flex-row justify-between gap-4'>
-            <div className='flex flex-col lg:flex-row gap-4 xl:w-1/2 justify-between border-2 rounded-md border-neutral-900 dark:border-white p-4 md:py-6 md:px-10'>
+        <div className='flex flex-col xl:flex-row justify-between'>
+            <div className='flex flex-col lg:flex-row gap-4 xl:w-1/2 justify-between border-2 rounded-md border-neutral-900 dark:border-white p-4 md:py-6 md:px-10 mb-2 xl:mr-2 xl:mb-0'>
                 <div className='flex flex-col gap-4 w-full justify-center'>
                     <div className='flex flex-col md:items-end md:flex-row md:justify-evenly gap-4 md:gap-x-28'>
                         <Input
