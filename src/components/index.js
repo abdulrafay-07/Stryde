@@ -7,6 +7,7 @@ import Categories from './categories/Categories';
 import Input from './common/Input';
 import Button from './common/Button';
 import Logo from './common/Logo';
+import Select from './common/Select';
 import Banner from './banner/Banner';
 import SavedCards from './cards/SavedCards';
 import UserPreference from './user preference/UserPreference';
@@ -18,5 +19,7 @@ import WorkoutSplitCards from './workout split/WorkoutSplitCards';
 import UpdateUserPreference from './user preference/UpdateUserPreference';
 import ProfilePic from './user info/ProfilePic';
 import ProfileCredentials from './user info/ProfileCredentials';
+import CreatePost from './posts/CreatePost';
+import Posts from './posts/Posts';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference, ProfilePic, ProfileCredentials };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Select, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference, ProfilePic, ProfileCredentials, CreatePost, Posts };

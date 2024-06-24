@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LuHome, LuDumbbell, LuSearch } from 'react-icons/lu';
+import { MdForum } from 'react-icons/md';
 
 const Categories = ({ menuOpen, handleMenuOpen }) => {
     const [showText, setShowText] = useState(false);
@@ -21,7 +22,8 @@ const Categories = ({ menuOpen, handleMenuOpen }) => {
     const categories = [
         { icon: LuHome, name: 'Home', to: '/' },
         { icon: LuDumbbell, name: 'Browse Regimes', to: '/browse' },
-        { icon: LuSearch, name: 'Search Exercises', to: '/search' }
+        { icon: LuSearch, name: 'Search Exercises', to: '/search' },
+        { icon: MdForum, name: 'Community Posts', to: '/community-posts' }
     ]
 
     return (

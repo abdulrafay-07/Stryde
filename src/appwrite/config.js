@@ -27,8 +27,8 @@ export class AppwriteService {
                 return userAccount;
             }
         } catch (error) {
-            throw(error);
             console.log('Appwrite service :: createAccount :: error', error);
+            throw(error);
         }
     }
 
@@ -36,8 +36,8 @@ export class AppwriteService {
         try {
             return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
-            throw(error);
             console.log('Appwrite service :: loginAccount :: error', error);
+            throw(error);
         }
     }
 
@@ -66,8 +66,8 @@ export class AppwriteService {
                 password
             )
         } catch (error) {
-            throw(error);
             console.log('Appwrite service :: updateEmail :: error', error);
+            throw(error);
         }
     }
 
@@ -77,8 +77,8 @@ export class AppwriteService {
                 name
             )
         } catch (error) {
-            throw(error);
             console.log('Appwrite service :: updateName :: error', error);
+            throw(error);
         }
     }
 
@@ -89,8 +89,16 @@ export class AppwriteService {
                 oldPassword
             )
         } catch (error) {
-            throw(error);
             console.log('Appwrite service :: updatePassword :: error', error);
+            throw(error);
+        }
+    }
+
+    async getUserById(userId) {
+        try {
+            return await this.account.get(userId);
+        } catch (error) {
+            console.log('Appwrite service :: getUserById :: error', error);
         }
     }
 
@@ -243,7 +251,7 @@ export class AppwriteService {
 
     // Community Forums
 
-    async createForum({title, slug, content, userId, imageId, category}) {
+    async createForum({title, slug, content, userId, imageId, category, profilePicId, name}) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseID,
@@ -255,6 +263,8 @@ export class AppwriteService {
                     userId,
                     imageId,
                     category,
+                    profilePicId,
+                    name
                 }
             )
         } catch (error) {
@@ -262,7 +272,7 @@ export class AppwriteService {
         }
     }
 
-    async updateForum(slug, {title, content, imageId, category}) {
+    async updateForum(slug, {title, content, imageId, category, profilePicId, name}) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseID,
@@ -273,6 +283,8 @@ export class AppwriteService {
                     content,
                     imageId,
                     category,
+                    profilePicId,
+                    name
                 }
             )
         } catch (error) {
@@ -394,10 +406,10 @@ export class AppwriteService {
         }
     }
 
-    getForumImageFilePreview(fildId) {
+    getForumImageFilePreview(fileId) {
         return this.bucket.getFilePreview(
             conf.appwriteForumImagesBucketID,
-            fildId,
+            fileId,
         )
     }
 }
