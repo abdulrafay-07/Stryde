@@ -335,7 +335,9 @@ export class AppwriteService {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseID,
                 conf.appwriteForumsCollectionID,
-                Query.equal("category", category),
+                [
+                    Query.equal("category", category),
+                ]
             )
         } catch (error) {
             console.log("Appwrite service :: getForumsByCategory :: error", error);

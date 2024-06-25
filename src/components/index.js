@@ -21,5 +21,7 @@ import ProfilePic from './user info/ProfilePic';
 import ProfileCredentials from './user info/ProfileCredentials';
 import CreatePost from './posts/CreatePost';
 import Posts from './posts/Posts';
+import PostCard from './posts/PostCard';
+import PostCategories from './posts/PostCategories';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Select, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference, ProfilePic, ProfileCredentials, CreatePost, Posts };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Select, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference, ProfilePic, ProfileCredentials, CreatePost, Posts, PostCard, PostCategories };

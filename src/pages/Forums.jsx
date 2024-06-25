@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CreatePost, Posts } from '../components/index';
+import { CreatePost, PostCategories, Posts } from '../components/index';
 
 const Forums = () => {
+    // show and hide create post button
     const [showCreate, setShowCreate] = useState(false);
 
     const userData = useSelector((state) => state.auth.userData);
@@ -18,7 +19,7 @@ const Forums = () => {
     return (
         <div className='h-full min-h-screen dark:bg-neutral-900 dark:text-white bg-white text-neutral-900 font-primary duration-300 pl-20 lg:px-28 lg:pr-16 py-20'>
             <div className='flex flex-col px-4 lg:px-0 lg:flex-row gap-x-20'>
-                <div className='flex flex-col space-y-6 flex-grow'>
+                <div className='flex flex-col space-y-4 flex-grow'>
                     <div>
                         <div className='flex justify-between'>
                             <h1 className='text-2xl md:text-3xl lg:text-5xl font-mono mb-2'>
@@ -39,12 +40,16 @@ const Forums = () => {
                             {showCreate ? "Hide create post" : "Create a post"}
                         </button>
                     </div>
-                    {showCreate&& <CreatePost />}
+                    <div className={`transition-all duration-300 ease-in-out overflow-hidden ${showCreate ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+                        {showCreate && <CreatePost />}
+                    </div>
+                    <div className='lg:hidden'>
+                        <PostCategories />
+                    </div>
                     <Posts />
                 </div>
-                <div>
-                    Categories
-                    {/* Sort by categories component */}
+                <div className='hidden lg:block min-h-screen'>
+                    <PostCategories />
                 </div>
             </div>
         </div>
