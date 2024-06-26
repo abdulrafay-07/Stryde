@@ -269,6 +269,7 @@ export class AppwriteService {
             )
         } catch (error) {
             console.log("Appwrite service :: createForum :: error", error);
+            throw(error);
         }
     }
 
@@ -289,6 +290,7 @@ export class AppwriteService {
             )
         } catch (error) {
             console.log("Appwrite service :: updateForum :: error", error);
+            throw(error);
         }
     }
 

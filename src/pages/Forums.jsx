@@ -29,7 +29,7 @@ const Forums = () => {
                                 onClick={toggleCreatePost}
                                 className='hidden sm:flex px-4 py-2 rounded-2xl hover:rounded-md bg-purple-600 hover:bg-purple-700 ease-in duration-150 text-white h-10'
                             >
-                                {showCreate ? "Hide create post" : "Create a post"}
+                                {showCreate ? "Hide" : "Create a post"}
                             </button>
                         </div>
                         <p className='dark:text-gray-300 opacity-80 text-neutral-800'>What's new with you? Inspire the community by sharing your achievements, goals, or some tips.</p>
@@ -37,7 +37,7 @@ const Forums = () => {
                             onClick={toggleCreatePost}
                             className='sm:hidden my-2 flex px-4 py-2 rounded-2xl hover:rounded-md bg-purple-600 hover:bg-purple-700 ease-in duration-150 text-white w-full justify-center'
                         >
-                            {showCreate ? "Hide create post" : "Create a post"}
+                            {showCreate ? "Hide" : "Create a post"}
                         </button>
                     </div>
                     <div className={`transition-all duration-300 ease-in-out overflow-hidden ${showCreate ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>

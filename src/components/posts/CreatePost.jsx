@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Select, Button } from '../index';
 import { PiCursorClick } from 'react-icons/pi';
@@ -6,38 +6,58 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import appwriteService from '../../appwrite/config';
 
-const CreatePost = () => {
+const CreatePost = ({ post }) => {
+    const [error, setError] = useState('');
+
     const { register, handleSubmit, setValue, watch } = useForm();
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-        let file;
-        const image = data.image[0];
-
-        const detail = await appwriteService.getUserInformation(userData.$id);
-        const profilePicId = detail.documents[0].profilePicId;
-
-        if (image) {
-            file = await appwriteService.uploadForumImageFile(image);
-        }
-
-        if (file && userData) {
-            const fileId = file.$id;
-            data.imageId = fileId;
-
-            const postDB = await appwriteService.createForum({...data, userId: userData.$id, profilePicId, name: userData.name});
-
-            if (postDB) {
-                navigate(`/community-posts/${postDB.$id}`);
+        setError('');
+        try {
+            if (post) {
+                const file = data.image[0] ? await appwriteService.uploadForumImageFile(data.image[0]) : null;
+    
+                if (file) {
+                    appwriteService.deleteForumImageFile(post.imageId);
+                }
+    
+                const postDB = await appwriteService.updateForum(post.$id, {...data, imageId: file ? file.$id: undefined});
+    
+                if (postDB) {
+                    navigate(`/community-posts/${postDB.$id}`);
+                }
+            } else {
+                let file;
+    
+                const detail = await appwriteService.getUserInformation(userData.$id);
+                const profilePicId = detail.documents[0].profilePicId;
+    
+                if (data.image[0]) {
+                    file = await appwriteService.uploadForumImageFile(data.image[0]);
+                }
+    
+                if (file && userData) {
+                    const fileId = file.$id;
+                    data.imageId = fileId;
+    
+                    const postDB = await appwriteService.createForum({...data, userId: userData.$id, profilePicId, name: userData.name});
+    
+                    if (postDB) {
+                        navigate(`/community-posts/${postDB.$id}`);
+                    }
+                } else if (!file && userData) {
+                    const postDB = await appwriteService.createForum({...data, userId: userData.$id, profilePicId, name: userData.name});
+    
+                    if (postDB) {
+                        navigate(`/community-posts/${postDB.$id}`);
+                    }
+                }
             }
-        } else if (!file && userData) {
-            const postDB = await appwriteService.createForum({...data, userId: userData.$id, profilePicId, name: userData.name});
-
-            if (postDB) {
-                navigate(`/community-posts/${postDB.$id}`);
-            }
+        } catch (error) {
+            setError(error.message);
         }
     }
 
@@ -52,6 +72,18 @@ const CreatePost = () => {
     }, [])
 
     useEffect(() => {
+        if (post) {
+            setValue('title', post.title || '');
+            setValue('content', post.content || '');
+            setValue('category', post.category || '');
+            if (post.title) {
+                const transformedSlug = slugTransform(post.title);
+                setValue('slug', transformedSlug || '');
+            }
+        }
+    }, [post, setValue, slugTransform])
+
+    useEffect(() => {
         const subscription = watch((value, {name}) => {
             if (name === 'title') {
                 setValue("slug", slugTransform(value.title, {
@@ -62,10 +94,11 @@ const CreatePost = () => {
     }, [watch, slugTransform, setValue])
 
     return (
-        <div className='px-5 py-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300 flex flex-col space-y-4'>
+        <div className='px-5 py-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300 flex flex-col space-y-4 xl:w-3/4'>
             <h1 className='text-xl lg:text-2xl font-mono text-center md:text-start'>Create post</h1>
             <form onSubmit={handleSubmit(submit)} className='flex flex-col space-y-2'>
                 <div className='mx-2 lg:px-3 lg:py-2 space-y-2'>
+                    {error &&  <p className="text-red-600 mt-8 text-center">{error}</p>}
                     <Input
                         placeholder='Title: e.g., What is powerlifting?'
                         className='dark:bg-neutral-700 dark:text-gray-200 border-none dark:placeholder:text-gray-200 placeholder:text-neutral-700 text-neutral-700 bg-gray-100 rounded-md'

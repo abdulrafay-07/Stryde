@@ -14,6 +14,7 @@ import UserPreference from './user preference/UserPreference';
 import SearchExercises from './search exercises/SearchExercises';
 import ExerciseCards from './cards/ExerciseCards';
 import LoadingState from './common/LoadingState';
+import Error from './common/Error';
 import WorkoutSplit from './workout split/WorkoutSplit';
 import WorkoutSplitCards from './workout split/WorkoutSplitCards';
 import UpdateUserPreference from './user preference/UpdateUserPreference';
@@ -24,4 +25,4 @@ import Posts from './posts/Posts';
 import PostCard from './posts/PostCard';
 import PostCategories from './posts/PostCategories';
 
-export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Select, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference, ProfilePic, ProfileCredentials, CreatePost, Posts, PostCard, PostCategories };
+export { Login, Signup, AuthLayout, Menu, Theme, Categories, Input, Button, Logo, Select, Banner, SavedCards, UserPreference, SearchExercises, ExerciseCards, LoadingState, Error, WorkoutSplit, WorkoutSplitCards, UpdateUserPreference, ProfilePic, ProfileCredentials, CreatePost, Posts, PostCard, PostCategories };

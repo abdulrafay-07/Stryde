@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const PostCategories = () => {
@@ -9,19 +9,14 @@ const PostCategories = () => {
     ];
 
     const handleCategoryClick = (category) => {
-        // update the URL parameters with the selected category
         searchParams.set('category', category.toLowerCase().replace(" ", ""));
         setSearchParams(searchParams);
-    }
-    
-    const handleBlur = () => {
-        // reset the URL parameters to default when button loses focus
-        setSearchParams();
-    }
+    };
 
-    useEffect(() => {
-        setSearchParams();
-    }, []);
+    const handleBlur = () => {
+        searchParams.delete('category');
+        setSearchParams(searchParams);
+    };
 
     return (
         <div className='flex flex-wrap lg:flex-col justify-center items-center px-4 py-6 gap-4 lg:gap-2 dark:bg-neutral-800 bg-gray-200 duration-300 rounded-2xl lg:w-[250px]'>
@@ -39,7 +34,7 @@ const PostCategories = () => {
                 </div>
             ))}
         </div>
-    )
-}
+    );
+};
 
 export default PostCategories;

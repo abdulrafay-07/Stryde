@@ -9,5 +9,6 @@ import EditPreference from './EditPreference';
 import UserInfo from './UserInfo';
 import Forums from './Forums';
 import SinglePost from './SinglePost';
+import EditPost from './EditPost';
 
-export { Home, Login, Signup, Browse, Search, SingleExercise, WorkoutRegime, EditPreference, UserInfo, Forums, SinglePost };
+export { Home, Login, Signup, Browse, Search, SingleExercise, WorkoutRegime, EditPreference, UserInfo, Forums, SinglePost, EditPost };

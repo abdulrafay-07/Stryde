@@ -14,7 +14,7 @@ const PostCard = ({post}) => {
     return (
         <Link
             to={`/community-posts/${post.$id}`}
-            className='px-3 py-2 md:px-5 md:py-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300 flex flex-col space-y-2'
+            className='px-3 py-2 md:px-5 md:py-4 dark:bg-neutral-800 bg-gray-200 rounded-xl duration-300 flex flex-col space-y-2 xl:w-3/4'
         >
             <div className='flex items-center gap-x-2 py-1'>
                 <div>
