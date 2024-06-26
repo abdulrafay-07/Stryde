@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { LoadingState } from '../index';
 
 const PostCategories = () => {
-    const [loading, setLoading] = useState(true);
     const [searchParams, setSearchParams] = useSearchParams();
     
     const categories = [

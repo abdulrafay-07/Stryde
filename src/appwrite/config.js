@@ -323,6 +323,9 @@ export class AppwriteService {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseID,
                 conf.appwriteForumsCollectionID,
+                [
+                    Query.orderDesc("$createdAt"),
+                ]
             )
         } catch (error) {
             console.log("Appwrite service :: getForums :: error", error);
@@ -337,6 +340,7 @@ export class AppwriteService {
                 conf.appwriteForumsCollectionID,
                 [
                     Query.equal("category", category),
+                    Query.orderDesc("$createdAt"),
                 ]
             )
         } catch (error) {

@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Select, Button } from '../index';
-import { CiImageOn } from 'react-icons/ci';
 import { PiCursorClick } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,14 +9,8 @@ import appwriteService from '../../appwrite/config';
 const CreatePost = () => {
     const { register, handleSubmit, setValue, watch } = useForm();
 
-    const fileInputRef = useRef(null);
-
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
-
-    const handleClick = () => {
-        fileInputRef.current.click();
-    };
 
     const submit = async (data) => {
         let file;
@@ -31,19 +24,19 @@ const CreatePost = () => {
         }
 
         if (file && userData) {
-            const fileId = fild.$id;
+            const fileId = file.$id;
             data.imageId = fileId;
 
             const postDB = await appwriteService.createForum({...data, userId: userData.$id, profilePicId, name: userData.name});
 
             if (postDB) {
-                navigate("/");
+                navigate(`/community-posts/${postDB.$id}`);
             }
         } else if (!file && userData) {
             const postDB = await appwriteService.createForum({...data, userId: userData.$id, profilePicId, name: userData.name});
 
             if (postDB) {
-                navigate("/");
+                navigate(`/community-posts/${postDB.$id}`);
             }
         }
     }
@@ -102,22 +95,16 @@ const CreatePost = () => {
                 </div>
                 <div className='flex flex-col lg:flex-row mx-2'>
                     <div className='flex flex-col lg:flex-row gap-y-4 lg:gap-x-24 lg:flex-grow lg:justify-start'>
-                        <div>
-                            <input type='file' ref={fileInputRef} className='hidden' />
-                            <button
-                                type='button'
-                                onClick={handleClick}
-                                className='px-4 py-2 rounded-2xl hover:rounded-md bg-purple-600 hover:bg-purple-700 ease-in duration-150 text-white flex items-center justify-center gap-x-1 w-full'
+                        <div className='flex flex-col md:flex-row gap-2 md:justify-evenly pb-2'>
+                            <input
+                                type='file'
+                                className='px-4 py-2 rounded-2xl hover:rounded-md bg-purple-600 hover:bg-purple-700 ease-in duration-150 text-white flex items-center justify-center gap-x-1 lg:w-1/2'
                                 {...register("image")}
-                            >
-                                <CiImageOn className='text-xl' /> Image
-                            </button>
-                        </div>
-                        <div>
+                            />
                             <Select
                                 options={['Tips', 'Diet', 'Competitions', 'Powerlifting', 'Bodybuilding', 'Workout Splits']}
                                 label='Categories'
-                                className='w-full text-center mb-3 lg:mb-0'
+                                className='px-4 py-2 h-full w-full'
                                 {...register('category', {
                                     required: true,
                                 })}
